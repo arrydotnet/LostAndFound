@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<!--
+    Aerial by HTML5 UP
+    html5up.net | @n33co
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Aerial by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="Content/assets/js/ie/html5shiv.js"></script><![endif]-->
+    <!--<link rel="stylesheet" href="Content/assets/css/main.css" />-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="Content/assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="Content/assets/css/ie9.css" /><![endif]-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="Content/js/Common.js"></script>
+
+    <script type="text/ecmascript" src="Content/jqGrid_5.0.2/js/i18n/grid.locale-en.js"></script>
+    <script src="Content/js/jquery-ui-1.11.4/jquery-ui.js"></script>
+    <link href="Content/js/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet" />
+    <!-- This is the Javascript file of jqGrid -->
+    <script type="text/ecmascript" src="Content/jqGrid_5.0.2/js/jquery.jqGrid.min.js"></script>
+    <!-- This is the localization file of the grid controlling messages, labels, etc.
+    <!-- The link to the CSS that the grid needs -->
+    <link href="Content/jqGrid_5.0.2/css/ui.jqgrid.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click', '.btnAddLostItem', function () {
+                $("#divLost").hide();
+                $("#divAddLostItem").show();
+            })
+            $(document).on('click', '.btnSearch', function () {
+                $("#divLost").show();
+                $("#divAddLostItem").hide();
+                var theUrl = "api/LostAndFound/GetAllLostData/";//http://localhost:63717/api/LostAndFound/GetAllLostData
+                MakeRequest(theUrl, undefined, CallbackGet, "GET");
+            })
+
+            $(document).on('click', '#hrefReward', function () {
+                $("#divLost").show();
+            })
+        });
+        //callback functions
+        function CallbackGet(data) {
+            if (data != undefined && data) {//0: Fail, 1: Save ,2 :edit
+                fillLostAndFound(data);
+            }
+            else {
+                alert('error');
+            }
+        }
+        function fillLostAndFound(data) {
+            jQuery('#dataTable').jqGrid('clearGridData')
+                     .jqGrid('setGridParam', { data: data, datatype: 'json' })
+                     .trigger('reloadGrid');
+
+            jQuery("#list2")
+                .jqGrid('clearGridData').jqGrid('setGridParam', { data: data, datatype: 'json' }).trigger('reloadGrid')//clear old data
+                .jqGrid({
+                datatype: "local",
+                colNames: ['ItemName', 'ItemDetails', 'UserName', 'LostDateFrom','LostDateTo', 'LostDetails', 'Country', 'State', 'City', 'OtherCity', 'LostLocation', 'Email', 'Phone1', 'Phone2', 'Address', 'MessageToFounder'],
+                colModel: [
+                        { name: 'ItemName', index: 'ItemName', sortable: true, width: 150 },
+                        { name: 'ItemDetails', index: 'ItemDetails', width: 150 },
+                        { name: 'UserName', index: 'UserName' },
+                        { name: 'LostDateFrom', index: 'LostDateFrom' },
+                        { name: 'LostDateTo', index: 'LostDateTo' },
+                        { name: 'LostDetails', index: 'LostDetails' },
+                        { name: 'CountryName', index: 'CountryName' },
+                        { name: 'StateName', index: 'StateName' },
+                        { name: 'CityName', index: 'CityName' },
+                        { name: 'OtherCity', index: 'OtherCity' },
+                        { name: 'LostLocation', index: 'LostLocation' },
+                        { name: 'Email', index: 'Email' },
+                        { name: 'Phone1', index: 'Phone1' },
+                        { name: 'Phone2', index: 'Phone2' },
+                        { name: 'Address', index: 'Address' },
+                        { name: 'MessageToFounder', index: 'MessageToFounder' }
+                ],
+                rowNum: 10,
+                rowList: [10, 20, 30],
+                pager: '#pager2',
+                sortname: 'id',
+                viewrecords: true,
+                sortorder: "desc",
+                caption: "Lost Items"
+            });
+            jQuery("#list2").jqGrid('navGrid', '#pager2', { edit: false, add: false, del: false });
+
+            var jObject=JSON.parse(data)
+            for (var x = 0; x <= jObject.length; x++) {
+                $("#list2").addRowData(x, jObject[x]);
+            }
+        }
+       
+    </script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/main.js"></script>
+</head>
+<body class="loading">
+    <div id="wrapper">
+        <!--<div id="bg"></div>-->
+        <div id="overlay">
+            <h1>Welcome to LostAndFound</h1>
+        </div>
+        <div id="main">
+
+            <!-- Header -->
+            <header id="header">
+                <div id="divLost" style="border:1px ridge black;height:100%;">
+                    <fieldset>
+                        <legend>
+                            <input class="btnSearch" type="button" id="btnSearch" value="Search" />
+                            | <input class="btnAddLostItem" type="button" id="btnAddLostItem" value="Add Lost Item" />
+                        </legend>
+                        <div>Search</div>
+                        <div id="divSearch" style="border-top:1px solid black;height:500px;">
+                            <table id="list2"></table>
+                            <div id="pager2"></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div id="divAddLostItem" style="border:1px ridge black;height:100%;display:none;">
+                    <fieldset>
+                        <legend>
+                            <input class="btnSearch" type="button" id="btnSearch" value="Search" />
+                            | <input class="btnAddLostItem" type="button" id="btnAddLostItem" value="Add Lost Item" />
+                        </legend>
+                        <div>Add Item</div>
+                        <div style="border-top:1px solid black;height:500px;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="width:50%;">
+                                        <div class="form-group">
+                                            <label>Item</label>
+                                            <div>
+                                                <input id="Item" name="Item" type="text" value="">
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td style="width:50%;">
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <div data-ng-app="app" data-ng-controller="CountryController">
+                                                <select id="ddlCountry" ng-change="GetSelectedCountry()" >
+                                                    <option value="-1" selected="selected" >Please Select</option>
+                                                    <option data-ng-repeat="t in CountryList" value="{{t.id}}">{{t.CountryName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;">
+                                        <div class="form-group">
+                                            <label>State</label>
+                                            <div>
+                                                <select id="ddlState" ng-disabled="!StateList"
+                                                        ng-change="GetSelectedState()">
+                                                    <option value="-1">Please Select</option>
+                                                    <option data-ng-repeat="t in StateList" value="{{t.id}}">{{t.StateName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td style="width:50%;">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <div>
+                                                <input id="City" name="City" type="text" value="">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%;">
+                                        <div class="form-group">
+                                            <label>Lost Location</label>
+                                            <div>
+                                                <input id="LostLocation" name="State" type="text" value="">
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td style="width:50%;">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100%;text-align:center;" colspan="2">
+                                        <input class="btnAddLostItem" type="button" style="text-decoration:none;" id="btnAddLostItem" value="Add Lost Item" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+            </header>
+            <!-- Footer -->
+            <footer id="footer">
+                <span class="copyright">&copy; <a href="http://Bconlogics.Com">Bconlogics.Com</a></span>
+            </footer>
+
+        </div>
+    </div>
+
+    <!--[if lte IE 8]><script src="Content/assets/js/ie/respond.min.js"></script><![endif]-->
+    <script>
+        window.onload = function () { document.body.className = ''; }
+        window.ontouchmove = function () { return false; }
+        window.onorientationchange = function () { document.body.scrollTop = 0; }
+    </script>
+
+</body>
+</html>

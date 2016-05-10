@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbLostModelStoreContainer" CdmEntityContainer="dbLostEntities">
+    <EntitySetMapping Name="tblConversation_Reply">
+      <EntityTypeMapping TypeName="dbLostModel.tblConversation_Reply">
+        <MappingFragment StoreEntitySet="tblConversation_Reply">
+          <ScalarProperty Name="Conv_ReplyID" ColumnName="Conv_ReplyID" />
+          <ScalarProperty Name="ReplyText" ColumnName="ReplyText" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Conv_ID" ColumnName="Conv_ID" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblConversations">
+      <EntityTypeMapping TypeName="dbLostModel.tblConversation">
+        <MappingFragment StoreEntitySet="tblConversations">
+          <ScalarProperty Name="Conv_ID" ColumnName="Conv_ID" />
+          <ScalarProperty Name="User1" ColumnName="User1" />
+          <ScalarProperty Name="User2" ColumnName="User2" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="StartedOn" ColumnName="StartedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFoundRequests">
+      <EntityTypeMapping TypeName="dbLostModel.tblFoundRequest">
+        <MappingFragment StoreEntitySet="tblFoundRequest">
+          <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="FoundDates" ColumnName="FoundDates" />
+          <ScalarProperty Name="FoundDetails" ColumnName="FoundDetails" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="OtherCity" ColumnName="OtherCity" />
+          <ScalarProperty Name="FoundLocation" ColumnName="FoundLocation" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MessageToSeeker" ColumnName="MessageToSeeker" />
+          <ScalarProperty Name="IsGivenToOwner" ColumnName="IsGivenToOwner" />
+          <ScalarProperty Name="IsActiveByAdmin" ColumnName="IsActiveByAdmin" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblItems">
+      <EntityTypeMapping TypeName="dbLostModel.tblItem">
+        <MappingFragment StoreEntitySet="tblItems">
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemDetails" ColumnName="ItemDetails" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLostFoundDetails">
+      <EntityTypeMapping TypeName="dbLostModel.tblLostFoundDetail">
+        <MappingFragment StoreEntitySet="tblLostFoundDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+          <ScalarProperty Name="FoundByUserID" ColumnName="FoundByUserID" />
+          <ScalarProperty Name="FoundByName" ColumnName="FoundByName" />
+          <ScalarProperty Name="FoundByMsg" ColumnName="FoundByMsg" />
+          <ScalarProperty Name="FoundDate" ColumnName="FoundDate" />
+          <ScalarProperty Name="MsgToSite" ColumnName="MsgToSite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLostRequests">
+      <EntityTypeMapping TypeName="dbLostModel.tblLostRequest">
+        <MappingFragment StoreEntitySet="tblLostRequest">
+          <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="LostDates" ColumnName="LostDates" />
+          <ScalarProperty Name="LostDetails" ColumnName="LostDetails" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="OtherCity" ColumnName="OtherCity" />
+          <ScalarProperty Name="LostLocation" ColumnName="LostLocation" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MessageToFounder" ColumnName="MessageToFounder" />
+          <ScalarProperty Name="IsGivenToOwner" ColumnName="IsGivenToOwner" />
+          <ScalarProperty Name="IsActiveByAdmin" ColumnName="IsActiveByAdmin" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="dbLostModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="FbLoginData" ColumnName="FbLoginData" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="X_tblRequestType">
+      <EntityTypeMapping TypeName="dbLostModel.X_tblRequestType">
+        <MappingFragment StoreEntitySet="X_tblRequestType">
+          <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+          <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

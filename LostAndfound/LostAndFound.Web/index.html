@@ -1,0 +1,76 @@
+﻿<!DOCTYPE HTML>
+<!--
+	Aerial by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Aerial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="Content/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="Content/assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="Content/assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="Content/assets/css/ie9.css" /><![endif]-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //$(document).on('click', '#hrefLost', function () {
+                //    $("#divLost").show();
+                //})
+                //$(document).on('click', '#hrefFound', function () {
+                //    $("#divLost").show();
+                //})
+                //$(document).on('click', '#hrefReward', function () {
+                //    $("#divLost").show();
+                //})
+            });
+        </script>
+	</head>
+	<body class="loading">
+		<div id="wrapper">
+			<div id="bg"></div>
+			<div id="overlay">
+                <h1>Welcome to LostAndFound</h1>
+            </div>
+			<div id="main">
+
+				<!-- Header -->
+					<header id="header">
+						<!--<h1>Welcome to LostAndFound</h1>-->
+						<p>
+                        <a id="hrefLost" href="Lost.html" class="icon fa-">Lost</a> &nbsp;&bull;&nbsp; 
+                        <a id="hrefFound" href="#" class="icon fa-">Found</a> &nbsp;&bull;&nbsp; 
+                        <a id="hrefReward" href="#" class="icon fa-">Reward And Recognition</a></p>
+						<nav>
+							<ul>
+								<li><a href="/Lost.html" class="icon fa-twitter"><span class="label">Lost</span></a></li>
+								<li><a href="#" class="icon fa-facebook"><span class="label">Found</span></a></li>
+								<li><a href="#" class="icon fa-dribbble"><span class="label">Tips</span></a></li>
+							 
+								<!-- <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+								<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+								<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li> -->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<span class="copyright">&copy; <a href="http://Bconlogics.Com">Bconlogics.Com</a></span>
+					</footer>
+
+			</div>
+		</div>
+      
+		<!--[if lte IE 8]><script src="Content/assets/js/ie/respond.min.js"></script><![endif]-->
+		<script>
+			window.onload = function() { document.body.className = ''; }
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+        <script src="Scripts/angular.min.js"></script>
+        <script src="app/app.module.js"></script>
+        <script src="app/main.js"></script>
+	</body>
+</html>

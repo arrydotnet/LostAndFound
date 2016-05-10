@@ -1,0 +1,1034 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbLostModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCities">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblConversation_Reply">
+          <Key>
+            <PropertyRef Name="Conv_ReplyID" />
+          </Key>
+          <Property Name="Conv_ReplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReplyText" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Conv_ID" Type="int" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="tblConversations">
+          <Key>
+            <PropertyRef Name="Conv_ID" />
+          </Key>
+          <Property Name="Conv_ID" Type="int" Nullable="false" />
+          <Property Name="User1" Type="int" />
+          <Property Name="User2" Type="int" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCountries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFoundRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="LostDateFrom" Type="datetime" />
+          <Property Name="LostDateTo" Type="datetime" />
+          <Property Name="FoundDetails" Type="nvarchar(max)" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="OtherCity" Type="nvarchar" MaxLength="25" />
+          <Property Name="FoundLocation" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="MessageToSeeker" Type="nvarchar(max)" />
+          <Property Name="IsGivenToOwner" Type="bit" Nullable="false" />
+          <Property Name="IsActiveByAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblItems">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ItemDetails" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblLostFoundDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="FoundByUserID" Type="int" />
+          <Property Name="FoundByName" Type="nvarchar" MaxLength="25" />
+          <Property Name="FoundByMsg" Type="nvarchar" MaxLength="25" />
+          <Property Name="FoundDate" Type="datetime" />
+          <Property Name="MsgToSite" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblLostRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="LostDateFrom" Type="datetime" />
+          <Property Name="LostDateTo" Type="datetime" />
+          <Property Name="LostDetails" Type="nvarchar(max)" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="OtherCity" Type="nvarchar" MaxLength="25" />
+          <Property Name="LostLocation" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="MessageToFounder" Type="nvarchar(max)" />
+          <Property Name="IsGivenToOwner" Type="bit" Nullable="false" />
+          <Property Name="IsActiveByAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStates">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="15" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="FbLoginData" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_states_tblCountries">
+          <End Role="tblCountries" Type="Self.tblCountries" Multiplicity="1" />
+          <End Role="tblStates" Type="Self.tblStates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tblStates">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCities_tblStates">
+          <End Role="tblStates" Type="Self.tblStates" Multiplicity="1" />
+          <End Role="tblCities" Type="Self.tblCities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStates">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="tblCities">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversation_Reply_tblConversations">
+          <End Role="tblConversations" Type="Self.tblConversations" Multiplicity="1" />
+          <End Role="tblConversation_Reply" Type="Self.tblConversation_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblConversations">
+              <PropertyRef Name="Conv_ID" />
+            </Principal>
+            <Dependent Role="tblConversation_Reply">
+              <PropertyRef Name="Conv_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversation_Reply_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblConversation_Reply" Type="Self.tblConversation_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblConversation_Reply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversations_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblConversations" Type="Self.tblConversations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblConversations">
+              <PropertyRef Name="User1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversations_tblUser1">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblConversations" Type="Self.tblConversations" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblConversations">
+              <PropertyRef Name="Conv_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblCities">
+          <End Role="tblCities" Type="Self.tblCities" Multiplicity="0..1" />
+          <End Role="tblFoundRequest" Type="Self.tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblCountries">
+          <End Role="tblCountries" Type="Self.tblCountries" Multiplicity="0..1" />
+          <End Role="tblFoundRequest" Type="Self.tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblItems">
+          <End Role="tblItems" Type="Self.tblItems" Multiplicity="1" />
+          <End Role="tblFoundRequest" Type="Self.tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItems">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblStates">
+          <End Role="tblStates" Type="Self.tblStates" Multiplicity="0..1" />
+          <End Role="tblFoundRequest" Type="Self.tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStates">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblFoundRequest" Type="Self.tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostFoundDetails_tblLostRequest">
+          <End Role="tblLostRequest" Type="Self.tblLostRequest" Multiplicity="1" />
+          <End Role="tblLostFoundDetails" Type="Self.tblLostFoundDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLostRequest">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="tblLostFoundDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblCities">
+          <End Role="tblCities" Type="Self.tblCities" Multiplicity="0..1" />
+          <End Role="tblLostRequest" Type="Self.tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblCountries">
+          <End Role="tblCountries" Type="Self.tblCountries" Multiplicity="0..1" />
+          <End Role="tblLostRequest" Type="Self.tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblItems">
+          <End Role="tblItems" Type="Self.tblItems" Multiplicity="1" />
+          <End Role="tblLostRequest" Type="Self.tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItems">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblStates">
+          <End Role="tblStates" Type="Self.tblStates" Multiplicity="0..1" />
+          <End Role="tblLostRequest" Type="Self.tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStates">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblLostRequest" Type="Self.tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbLostModelStoreContainer">
+          <EntitySet Name="tblCities" EntityType="Self.tblCities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConversation_Reply" EntityType="Self.tblConversation_Reply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConversations" EntityType="Self.tblConversations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCountries" EntityType="Self.tblCountries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFoundRequest" EntityType="Self.tblFoundRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblItems" EntityType="Self.tblItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLostFoundDetails" EntityType="Self.tblLostFoundDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLostRequest" EntityType="Self.tblLostRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStates" EntityType="Self.tblStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_states_tblCountries" Association="Self.FK_states_tblCountries">
+            <End Role="tblCountries" EntitySet="tblCountries" />
+            <End Role="tblStates" EntitySet="tblStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCities_tblStates" Association="Self.FK_tblCities_tblStates">
+            <End Role="tblStates" EntitySet="tblStates" />
+            <End Role="tblCities" EntitySet="tblCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversation_Reply_tblConversations" Association="Self.FK_tblConversation_Reply_tblConversations">
+            <End Role="tblConversations" EntitySet="tblConversations" />
+            <End Role="tblConversation_Reply" EntitySet="tblConversation_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversation_Reply_tblUser" Association="Self.FK_tblConversation_Reply_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblConversation_Reply" EntitySet="tblConversation_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversations_tblUser" Association="Self.FK_tblConversations_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblConversations" EntitySet="tblConversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversations_tblUser1" Association="Self.FK_tblConversations_tblUser1">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblConversations" EntitySet="tblConversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblCities" Association="Self.FK_tblFoundRequest_tblCities">
+            <End Role="tblCities" EntitySet="tblCities" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblCountries" Association="Self.FK_tblFoundRequest_tblCountries">
+            <End Role="tblCountries" EntitySet="tblCountries" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblItems" Association="Self.FK_tblFoundRequest_tblItems">
+            <End Role="tblItems" EntitySet="tblItems" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblStates" Association="Self.FK_tblFoundRequest_tblStates">
+            <End Role="tblStates" EntitySet="tblStates" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblUser" Association="Self.FK_tblFoundRequest_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostFoundDetails_tblLostRequest" Association="Self.FK_tblLostFoundDetails_tblLostRequest">
+            <End Role="tblLostRequest" EntitySet="tblLostRequest" />
+            <End Role="tblLostFoundDetails" EntitySet="tblLostFoundDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblCities" Association="Self.FK_tblLostRequest_tblCities">
+            <End Role="tblCities" EntitySet="tblCities" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblCountries" Association="Self.FK_tblLostRequest_tblCountries">
+            <End Role="tblCountries" EntitySet="tblCountries" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblItems" Association="Self.FK_tblLostRequest_tblItems">
+            <End Role="tblItems" EntitySet="tblItems" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblStates" Association="Self.FK_tblLostRequest_tblStates">
+            <End Role="tblStates" EntitySet="tblStates" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblUser" Association="Self.FK_tblLostRequest_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequest" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbLostModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbLostEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCities" EntityType="dbLostModel.tblCity" />
+          <EntitySet Name="tblConversation_Reply" EntityType="dbLostModel.tblConversation_Reply" />
+          <EntitySet Name="tblConversations" EntityType="dbLostModel.tblConversation" />
+          <EntitySet Name="tblCountries" EntityType="dbLostModel.tblCountry" />
+          <EntitySet Name="tblFoundRequests" EntityType="dbLostModel.tblFoundRequest" />
+          <EntitySet Name="tblItems" EntityType="dbLostModel.tblItem" />
+          <EntitySet Name="tblLostFoundDetails" EntityType="dbLostModel.tblLostFoundDetail" />
+          <EntitySet Name="tblLostRequests" EntityType="dbLostModel.tblLostRequest" />
+          <EntitySet Name="tblStates" EntityType="dbLostModel.tblState" />
+          <EntitySet Name="tblUsers" EntityType="dbLostModel.tblUser" />
+          <AssociationSet Name="FK_tblCities_tblStates" Association="dbLostModel.FK_tblCities_tblStates">
+            <End Role="tblState" EntitySet="tblStates" />
+            <End Role="tblCity" EntitySet="tblCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblCities" Association="dbLostModel.FK_tblFoundRequest_tblCities">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblCities" Association="dbLostModel.FK_tblLostRequest_tblCities">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversation_Reply_tblConversations" Association="dbLostModel.FK_tblConversation_Reply_tblConversations">
+            <End Role="tblConversation" EntitySet="tblConversations" />
+            <End Role="tblConversation_Reply" EntitySet="tblConversation_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversation_Reply_tblUser" Association="dbLostModel.FK_tblConversation_Reply_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblConversation_Reply" EntitySet="tblConversation_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversations_tblUser" Association="dbLostModel.FK_tblConversations_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblConversation" EntitySet="tblConversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblConversations_tblUser1" Association="dbLostModel.FK_tblConversations_tblUser1">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblConversation" EntitySet="tblConversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_states_tblCountries" Association="dbLostModel.FK_states_tblCountries">
+            <End Role="tblCountry" EntitySet="tblCountries" />
+            <End Role="tblState" EntitySet="tblStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblCountries" Association="dbLostModel.FK_tblFoundRequest_tblCountries">
+            <End Role="tblCountry" EntitySet="tblCountries" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblCountries" Association="dbLostModel.FK_tblLostRequest_tblCountries">
+            <End Role="tblCountry" EntitySet="tblCountries" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblItems" Association="dbLostModel.FK_tblFoundRequest_tblItems">
+            <End Role="tblItem" EntitySet="tblItems" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblStates" Association="dbLostModel.FK_tblFoundRequest_tblStates">
+            <End Role="tblState" EntitySet="tblStates" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoundRequest_tblUser" Association="dbLostModel.FK_tblFoundRequest_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblFoundRequest" EntitySet="tblFoundRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblItems" Association="dbLostModel.FK_tblLostRequest_tblItems">
+            <End Role="tblItem" EntitySet="tblItems" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostFoundDetails_tblLostRequest" Association="dbLostModel.FK_tblLostFoundDetails_tblLostRequest">
+            <End Role="tblLostRequest" EntitySet="tblLostRequests" />
+            <End Role="tblLostFoundDetail" EntitySet="tblLostFoundDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblStates" Association="dbLostModel.FK_tblLostRequest_tblStates">
+            <End Role="tblState" EntitySet="tblStates" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLostRequest_tblUser" Association="dbLostModel.FK_tblLostRequest_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblLostRequest" EntitySet="tblLostRequests" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblState" Relationship="dbLostModel.FK_tblCities_tblStates" FromRole="tblCity" ToRole="tblState" />
+          <NavigationProperty Name="tblFoundRequests" Relationship="dbLostModel.FK_tblFoundRequest_tblCities" FromRole="tblCity" ToRole="tblFoundRequest" />
+          <NavigationProperty Name="tblLostRequests" Relationship="dbLostModel.FK_tblLostRequest_tblCities" FromRole="tblCity" ToRole="tblLostRequest" />
+        </EntityType>
+        <EntityType Name="tblConversation_Reply">
+          <Key>
+            <PropertyRef Name="Conv_ReplyID" />
+          </Key>
+          <Property Name="Conv_ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReplyText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Conv_ID" Type="Int32" Nullable="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <NavigationProperty Name="tblConversation" Relationship="dbLostModel.FK_tblConversation_Reply_tblConversations" FromRole="tblConversation_Reply" ToRole="tblConversation" />
+          <NavigationProperty Name="tblUser" Relationship="dbLostModel.FK_tblConversation_Reply_tblUser" FromRole="tblConversation_Reply" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblConversation">
+          <Key>
+            <PropertyRef Name="Conv_ID" />
+          </Key>
+          <Property Name="Conv_ID" Type="Int32" Nullable="false" />
+          <Property Name="User1" Type="Int32" />
+          <Property Name="User2" Type="Int32" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblConversation_Reply" Relationship="dbLostModel.FK_tblConversation_Reply_tblConversations" FromRole="tblConversation" ToRole="tblConversation_Reply" />
+          <NavigationProperty Name="tblUser" Relationship="dbLostModel.FK_tblConversations_tblUser" FromRole="tblConversation" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser1" Relationship="dbLostModel.FK_tblConversations_tblUser1" FromRole="tblConversation" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblStates" Relationship="dbLostModel.FK_states_tblCountries" FromRole="tblCountry" ToRole="tblState" />
+          <NavigationProperty Name="tblFoundRequests" Relationship="dbLostModel.FK_tblFoundRequest_tblCountries" FromRole="tblCountry" ToRole="tblFoundRequest" />
+          <NavigationProperty Name="tblLostRequests" Relationship="dbLostModel.FK_tblLostRequest_tblCountries" FromRole="tblCountry" ToRole="tblLostRequest" />
+        </EntityType>
+        <EntityType Name="tblFoundRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="LostDateFrom" Type="DateTime" Precision="3" />
+          <Property Name="LostDateTo" Type="DateTime" Precision="3" />
+          <Property Name="FoundDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="StateID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="OtherCity" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FoundLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MessageToSeeker" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsGivenToOwner" Type="Boolean" Nullable="false" />
+          <Property Name="IsActiveByAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblCity" Relationship="dbLostModel.FK_tblFoundRequest_tblCities" FromRole="tblFoundRequest" ToRole="tblCity" />
+          <NavigationProperty Name="tblCountry" Relationship="dbLostModel.FK_tblFoundRequest_tblCountries" FromRole="tblFoundRequest" ToRole="tblCountry" />
+          <NavigationProperty Name="tblItem" Relationship="dbLostModel.FK_tblFoundRequest_tblItems" FromRole="tblFoundRequest" ToRole="tblItem" />
+          <NavigationProperty Name="tblState" Relationship="dbLostModel.FK_tblFoundRequest_tblStates" FromRole="tblFoundRequest" ToRole="tblState" />
+          <NavigationProperty Name="tblUser" Relationship="dbLostModel.FK_tblFoundRequest_tblUser" FromRole="tblFoundRequest" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblItem">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ItemDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblFoundRequests" Relationship="dbLostModel.FK_tblFoundRequest_tblItems" FromRole="tblItem" ToRole="tblFoundRequest" />
+          <NavigationProperty Name="tblLostRequests" Relationship="dbLostModel.FK_tblLostRequest_tblItems" FromRole="tblItem" ToRole="tblLostRequest" />
+        </EntityType>
+        <EntityType Name="tblLostFoundDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <Property Name="FoundByUserID" Type="Int32" />
+          <Property Name="FoundByName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FoundByMsg" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FoundDate" Type="DateTime" Precision="3" />
+          <Property Name="MsgToSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblLostRequest" Relationship="dbLostModel.FK_tblLostFoundDetails_tblLostRequest" FromRole="tblLostFoundDetail" ToRole="tblLostRequest" />
+        </EntityType>
+        <EntityType Name="tblLostRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="LostDateFrom" Type="DateTime" Precision="3" />
+          <Property Name="LostDateTo" Type="DateTime" Precision="3" />
+          <Property Name="LostDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="StateID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="OtherCity" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LostLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MessageToFounder" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsGivenToOwner" Type="Boolean" Nullable="false" />
+          <Property Name="IsActiveByAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblCity" Relationship="dbLostModel.FK_tblLostRequest_tblCities" FromRole="tblLostRequest" ToRole="tblCity" />
+          <NavigationProperty Name="tblCountry" Relationship="dbLostModel.FK_tblLostRequest_tblCountries" FromRole="tblLostRequest" ToRole="tblCountry" />
+          <NavigationProperty Name="tblItem" Relationship="dbLostModel.FK_tblLostRequest_tblItems" FromRole="tblLostRequest" ToRole="tblItem" />
+          <NavigationProperty Name="tblLostFoundDetails" Relationship="dbLostModel.FK_tblLostFoundDetails_tblLostRequest" FromRole="tblLostRequest" ToRole="tblLostFoundDetail" />
+          <NavigationProperty Name="tblState" Relationship="dbLostModel.FK_tblLostRequest_tblStates" FromRole="tblLostRequest" ToRole="tblState" />
+          <NavigationProperty Name="tblUser" Relationship="dbLostModel.FK_tblLostRequest_tblUser" FromRole="tblLostRequest" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCities" Relationship="dbLostModel.FK_tblCities_tblStates" FromRole="tblState" ToRole="tblCity" />
+          <NavigationProperty Name="tblCountry" Relationship="dbLostModel.FK_states_tblCountries" FromRole="tblState" ToRole="tblCountry" />
+          <NavigationProperty Name="tblFoundRequests" Relationship="dbLostModel.FK_tblFoundRequest_tblStates" FromRole="tblState" ToRole="tblFoundRequest" />
+          <NavigationProperty Name="tblLostRequests" Relationship="dbLostModel.FK_tblLostRequest_tblStates" FromRole="tblState" ToRole="tblLostRequest" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="FbLoginData" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblConversation_Reply" Relationship="dbLostModel.FK_tblConversation_Reply_tblUser" FromRole="tblUser" ToRole="tblConversation_Reply" />
+          <NavigationProperty Name="tblConversations" Relationship="dbLostModel.FK_tblConversations_tblUser" FromRole="tblUser" ToRole="tblConversation" />
+          <NavigationProperty Name="tblConversation" Relationship="dbLostModel.FK_tblConversations_tblUser1" FromRole="tblUser" ToRole="tblConversation" />
+          <NavigationProperty Name="tblFoundRequests" Relationship="dbLostModel.FK_tblFoundRequest_tblUser" FromRole="tblUser" ToRole="tblFoundRequest" />
+          <NavigationProperty Name="tblLostRequests" Relationship="dbLostModel.FK_tblLostRequest_tblUser" FromRole="tblUser" ToRole="tblLostRequest" />
+        </EntityType>
+        <Association Name="FK_tblCities_tblStates">
+          <End Type="dbLostModel.tblState" Role="tblState" Multiplicity="1" />
+          <End Type="dbLostModel.tblCity" Role="tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblCities">
+          <End Type="dbLostModel.tblCity" Role="tblCity" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblFoundRequest" Role="tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblCities">
+          <End Type="dbLostModel.tblCity" Role="tblCity" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblLostRequest" Role="tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversation_Reply_tblConversations">
+          <End Type="dbLostModel.tblConversation" Role="tblConversation" Multiplicity="1" />
+          <End Type="dbLostModel.tblConversation_Reply" Role="tblConversation_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblConversation">
+              <PropertyRef Name="Conv_ID" />
+            </Principal>
+            <Dependent Role="tblConversation_Reply">
+              <PropertyRef Name="Conv_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversation_Reply_tblUser">
+          <End Type="dbLostModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblConversation_Reply" Role="tblConversation_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblConversation_Reply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversations_tblUser">
+          <End Type="dbLostModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblConversation" Role="tblConversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblConversation">
+              <PropertyRef Name="User1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblConversations_tblUser1">
+          <End Type="dbLostModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="dbLostModel.tblConversation" Role="tblConversation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblConversation">
+              <PropertyRef Name="Conv_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_states_tblCountries">
+          <End Type="dbLostModel.tblCountry" Role="tblCountry" Multiplicity="1" />
+          <End Type="dbLostModel.tblState" Role="tblState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tblState">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblCountries">
+          <End Type="dbLostModel.tblCountry" Role="tblCountry" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblFoundRequest" Role="tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblCountries">
+          <End Type="dbLostModel.tblCountry" Role="tblCountry" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblLostRequest" Role="tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblItems">
+          <End Type="dbLostModel.tblItem" Role="tblItem" Multiplicity="1" />
+          <End Type="dbLostModel.tblFoundRequest" Role="tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItem">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblStates">
+          <End Type="dbLostModel.tblState" Role="tblState" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblFoundRequest" Role="tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoundRequest_tblUser">
+          <End Type="dbLostModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="dbLostModel.tblFoundRequest" Role="tblFoundRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblFoundRequest">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblItems">
+          <End Type="dbLostModel.tblItem" Role="tblItem" Multiplicity="1" />
+          <End Type="dbLostModel.tblLostRequest" Role="tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItem">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostFoundDetails_tblLostRequest">
+          <End Type="dbLostModel.tblLostRequest" Role="tblLostRequest" Multiplicity="1" />
+          <End Type="dbLostModel.tblLostFoundDetail" Role="tblLostFoundDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLostRequest">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="tblLostFoundDetail">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblStates">
+          <End Type="dbLostModel.tblState" Role="tblState" Multiplicity="0..1" />
+          <End Type="dbLostModel.tblLostRequest" Role="tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLostRequest_tblUser">
+          <End Type="dbLostModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="dbLostModel.tblLostRequest" Role="tblLostRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblLostRequest">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbLostModelStoreContainer" CdmEntityContainer="dbLostEntities">
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="dbLostModel.tblCity">
+              <MappingFragment StoreEntitySet="tblCities">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConversation_Reply">
+            <EntityTypeMapping TypeName="dbLostModel.tblConversation_Reply">
+              <MappingFragment StoreEntitySet="tblConversation_Reply">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Conv_ID" ColumnName="Conv_ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ReplyText" ColumnName="ReplyText" />
+                <ScalarProperty Name="Conv_ReplyID" ColumnName="Conv_ReplyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConversations">
+            <EntityTypeMapping TypeName="dbLostModel.tblConversation">
+              <MappingFragment StoreEntitySet="tblConversations">
+                <ScalarProperty Name="StartedOn" ColumnName="StartedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="User2" ColumnName="User2" />
+                <ScalarProperty Name="User1" ColumnName="User1" />
+                <ScalarProperty Name="Conv_ID" ColumnName="Conv_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCountries">
+            <EntityTypeMapping TypeName="dbLostModel.tblCountry">
+              <MappingFragment StoreEntitySet="tblCountries">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFoundRequests">
+            <EntityTypeMapping TypeName="dbLostModel.tblFoundRequest">
+              <MappingFragment StoreEntitySet="tblFoundRequest">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActiveByAdmin" ColumnName="IsActiveByAdmin" />
+                <ScalarProperty Name="IsGivenToOwner" ColumnName="IsGivenToOwner" />
+                <ScalarProperty Name="MessageToSeeker" ColumnName="MessageToSeeker" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FoundLocation" ColumnName="FoundLocation" />
+                <ScalarProperty Name="OtherCity" ColumnName="OtherCity" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="FoundDetails" ColumnName="FoundDetails" />
+                <ScalarProperty Name="LostDateTo" ColumnName="LostDateTo" />
+                <ScalarProperty Name="LostDateFrom" ColumnName="LostDateFrom" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblItems">
+            <EntityTypeMapping TypeName="dbLostModel.tblItem">
+              <MappingFragment StoreEntitySet="tblItems">
+                <ScalarProperty Name="ItemDetails" ColumnName="ItemDetails" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLostFoundDetails">
+            <EntityTypeMapping TypeName="dbLostModel.tblLostFoundDetail">
+              <MappingFragment StoreEntitySet="tblLostFoundDetails">
+                <ScalarProperty Name="MsgToSite" ColumnName="MsgToSite" />
+                <ScalarProperty Name="FoundDate" ColumnName="FoundDate" />
+                <ScalarProperty Name="FoundByMsg" ColumnName="FoundByMsg" />
+                <ScalarProperty Name="FoundByName" ColumnName="FoundByName" />
+                <ScalarProperty Name="FoundByUserID" ColumnName="FoundByUserID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLostRequests">
+            <EntityTypeMapping TypeName="dbLostModel.tblLostRequest">
+              <MappingFragment StoreEntitySet="tblLostRequest">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActiveByAdmin" ColumnName="IsActiveByAdmin" />
+                <ScalarProperty Name="IsGivenToOwner" ColumnName="IsGivenToOwner" />
+                <ScalarProperty Name="MessageToFounder" ColumnName="MessageToFounder" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LostLocation" ColumnName="LostLocation" />
+                <ScalarProperty Name="OtherCity" ColumnName="OtherCity" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="LostDetails" ColumnName="LostDetails" />
+                <ScalarProperty Name="LostDateTo" ColumnName="LostDateTo" />
+                <ScalarProperty Name="LostDateFrom" ColumnName="LostDateFrom" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="dbLostModel.tblState">
+              <MappingFragment StoreEntitySet="tblStates">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="dbLostModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="FbLoginData" ColumnName="FbLoginData" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
